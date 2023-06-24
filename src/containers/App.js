@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
+import ErrorBoundary from '../components/ErrorBoundary';
 import './App.css';
 
 // React App Section 1 and 2 -- notes
@@ -38,7 +39,6 @@ import './App.css';
 
 // React App 5 -- Notes
 // Make the website more repsonsive such that the search bar is visible even if we scroll through users
-// M
 
 class App extends Component {
 	constructor() {
@@ -83,7 +83,9 @@ class App extends Component {
 						<h1 className='ttu f1'>Robofriends</h1>
 						<SearchBox searchChange={this.onSearcChange}/>
 						<Scroll>
-							<CardList robots={filteredRobots} />
+							<ErrorBoundary>
+								<CardList robots={filteredRobots} />
+							</ErrorBoundary>
 						</Scroll>
 					</div>
 				);
