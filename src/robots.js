@@ -48,4 +48,3 @@ export const robots = [
 // we use an API - when this website gets loaded we want to make a request somewhere to get our users/robots from a server
 // JSONPlaceholder - We use JSON Placeholder to get users from the url they have which has about 10 users 
 //				   - The url https://jsonplaceholder.typicode.com/users
-//
