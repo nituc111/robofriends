@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import CardList from './CardList';
-import SearchBox from './SearchBox';
-import Scroll from './Scroll';
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
+import Scroll from '../components/Scroll';
 import './App.css';
 
 // React App Section 1 and 2 -- notes
@@ -67,26 +67,26 @@ class App extends Component {
 	}
 
 	render() {
-		const filteredRobots = this.state.robots.filter(robots => 
+		const {robots, searchfield} = this.state;
+		const filteredRobots = robots.filter(robot => 
 		{
-			return robots.name
+			return robot.name
 			.toLowerCase()
-			.includes(this.state.searchfield.toLowerCase())
+			.includes(searchfield.toLowerCase())
 		})
 
-		if(this.state.robots.length === 0) {
-			return <h2 className='tc'>Loading...</h2>
-		} else {
-			return (
-				<div className='tc'>
-					<h1 className='ttu f1'>Robofriends</h1>
-					<SearchBox searchChange={this.onSearcChange}/>
-					<Scroll>
-						<CardList robots={filteredRobots} />
-					</Scroll>
-				</div>
-			);
-		}
+		// using ternary operator
+		return !robots.length ?
+				<h2 className='tc'>Loading...</h2> :
+				(
+					<div className='tc'>
+						<h1 className='ttu f1'>Robofriends</h1>
+						<SearchBox searchChange={this.onSearcChange}/>
+						<Scroll>
+							<CardList robots={filteredRobots} />
+						</Scroll>
+					</div>
+				);
 	}
 }
 
